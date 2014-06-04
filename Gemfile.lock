@@ -111,6 +111,7 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.6.1)
     multi_xml (0.5.3)
+    mysql2 (0.3.16)
     nested_form (0.3.1)
     nokogiri (1.5.6)
     orm_adapter (0.4.0)
@@ -217,6 +218,7 @@ DEPENDENCIES
   minitest-metadata
   minitest-spec-rails
   mocha
+  mysql2
   pg
   rack-test
   rails (= 3.2.12)

@@ -6,6 +6,7 @@ gem 'rails', '3.2.12'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'grape'
+gem 'mysql2'
 # For better json views:
 # gem 'rabl'
 # gem "grape-rabl"
