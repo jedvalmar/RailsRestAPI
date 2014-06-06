@@ -13,119 +13,92 @@
 
 ActiveRecord::Schema.define(:version => 20130318055526) do
 
-  create_table "alumnos", :primary_key => "id_alumno", :force => true do |t|
-    t.string  "nombre",    :limit => 45, :null => false
-    t.string  "apepat",    :limit => 45, :null => false
-    t.string  "apemat",    :limit => 45, :null => false
-    t.string  "domicilio", :limit => 45, :null => false
-    t.integer "cp",                      :null => false
-    t.string  "colonia",   :limit => 45, :null => false
-    t.string  "municipio", :limit => 45, :null => false
-    t.string  "estado",    :limit => 45, :null => false
+  create_table "Clients", :primary_key => "idClient", :force => true do |t|
+    t.string  "username", :limit => 45
+    t.string  "pass",     :limit => 45
+    t.boolean "status"
   end
 
-  create_table "calificaciones", :id => false, :force => true do |t|
-    t.integer "id_calificacion", :null => false
-    t.integer "id_parcial",      :null => false
-    t.float   "calificacion",    :null => false
-    t.integer "id_razon",        :null => false
+  create_table "Components_brand", :primary_key => "idComponents_brand", :force => true do |t|
   end
 
-  add_index "calificaciones", ["id_parcial"], :name => "fk_calificaciones_parciales1"
-  add_index "calificaciones", ["id_razon"], :name => "fk_calificaciones_razones1"
-
-  create_table "carreras", :id => false, :force => true do |t|
-    t.integer "id_carrera",                :null => false
-    t.integer "id_centro",                 :null => false
-    t.string  "nombre",      :limit => 45, :null => false
-    t.string  "descripcion", :limit => 45, :null => false
+  create_table "Contact_types", :primary_key => "idContact_type", :force => true do |t|
+    t.string "contact_type", :limit => 45
   end
 
-  add_index "carreras", ["id_centro"], :name => "FK_centros_carreras"
-
-  create_table "centros", :primary_key => "id_centro", :force => true do |t|
-    t.string "nombre", :limit => 45, :null => false
+  create_table "Employees", :primary_key => "idEmployees", :force => true do |t|
+    t.string  "username", :limit => 45
+    t.string  "pass",     :limit => 45
+    t.boolean "status"
   end
 
-  create_table "contactosals", :id => false, :force => true do |t|
-    t.integer "id_tipocontacto",               :null => false
-    t.integer "id_alumno",                     :null => false
-    t.string  "contacto",        :limit => 45, :null => false
+  create_table "Events", :primary_key => "idEvents", :force => true do |t|
+    t.string "event", :limit => 45
   end
 
-  add_index "contactosals", ["id_alumno"], :name => "fk_contactosals_alumnos1"
-  add_index "contactosals", ["id_tipocontacto"], :name => "fk_contactosals_tiposcontactos1"
-
-  create_table "contactosmts", :id => false, :force => true do |t|
-    t.integer "id_tipocontacto",               :null => false
-    t.integer "id_maestro",                    :null => false
-    t.string  "contacto",        :limit => 45, :null => false
+  create_table "General_info", :primary_key => "idGeneral_info", :force => true do |t|
+    t.string "name",      :limit => 45
+    t.string "last_name", :limit => 45
+    t.string "address",   :limit => 45
+    t.string "propietor", :limit => 45
+    t.string "email",     :limit => 45
   end
 
-  add_index "contactosmts", ["id_maestro"], :name => "fk_contactosmts_maestros1"
-  add_index "contactosmts", ["id_tipocontacto"], :name => "fk_contactosmts_tiposcontactos1"
-
-  create_table "cursos", :id => false, :force => true do |t|
-    t.integer "id_curso",                      :null => false
-    t.integer "id_materias",                   :null => false
-    t.integer "id_maestro",                    :null => false
-    t.string  "curso",           :limit => 45, :null => false
-    t.integer "id_periodo",                    :null => false
-    t.integer "id_tiposestatus",               :null => false
+  create_table "Machine_brand", :primary_key => "idMachine_brand", :force => true do |t|
+    t.string "brand", :limit => 45
   end
 
-  add_index "cursos", ["id_maestro"], :name => "fk_cursos_maestros1"
-  add_index "cursos", ["id_materias"], :name => "fk_cursos_materias1"
-  add_index "cursos", ["id_periodo"], :name => "fk_cursos_periodos1"
-  add_index "cursos", ["id_tiposestatus"], :name => "fk_cursos_tiposestatus1"
-
-  create_table "cursosalumnos", :id => false, :force => true do |t|
-    t.integer "id_cursoalumno", :null => false
-    t.integer "id_curso",       :null => false
-    t.integer "id_alumno",      :null => false
+  create_table "Packages", :primary_key => "idPackages", :force => true do |t|
+    t.string "Description", :limit => 45
   end
 
-  add_index "cursosalumnos", ["id_alumno"], :name => "fk_cursosalumnos_alumnos1"
-  add_index "cursosalumnos", ["id_curso"], :name => "fk_cursosalumnos_cursos1"
-
-  create_table "maestros", :primary_key => "id_maestro", :force => true do |t|
-    t.string  "nombre",    :limit => 45, :null => false
-    t.string  "apepat",    :limit => 45, :null => false
-    t.string  "apemat",    :limit => 45, :null => false
-    t.string  "domicilio", :limit => 45, :null => false
-    t.integer "cp",                      :null => false
-    t.string  "colonia",   :limit => 45, :null => false
-    t.string  "municipio", :limit => 45, :null => false
-    t.string  "estado",    :limit => 45, :null => false
+  create_table "component_type", :primary_key => "idComponent_type", :force => true do |t|
+    t.string  "component_type",     :limit => 45
+    t.integer "idComponents",                     :null => false
+    t.integer "idComponents_brand",               :null => false
   end
 
-  create_table "materias", :id => false, :force => true do |t|
-    t.integer "id_materias",               :null => false
-    t.integer "id_carrera",                :null => false
-    t.string  "materia",     :limit => 45, :null => false
+  add_index "component_type", ["idComponents"], :name => "fk_Component_type_Components1_idx"
+  add_index "component_type", ["idComponents_brand"], :name => "fk_Component_type_Components_brand1_idx"
+
+  create_table "components", :primary_key => "idComponents", :force => true do |t|
+    t.string  "component",     :limit => 45
+    t.integer "idModel",                     :null => false
+    t.string  "serial_number", :limit => 45
   end
 
-  add_index "materias", ["id_carrera"], :name => "fk_materias_carreras1"
+  add_index "components", ["idModel"], :name => "fk_Components_Model1_idx"
 
-  create_table "parciales", :id => false, :force => true do |t|
-    t.integer "id_parcial",                   :null => false
-    t.integer "id_cursoalumno",               :null => false
-    t.string  "parcial",        :limit => 45, :null => false
+  create_table "contacts", :primary_key => "idContacts", :force => true do |t|
+    t.string  "contact",        :limit => 100
+    t.integer "idGeneral_info",                :null => false
+    t.integer "idContact_type",                :null => false
   end
 
-  add_index "parciales", ["id_cursoalumno"], :name => "fk_parciales_cursosalumnos1"
+  add_index "contacts", ["idContact_type"], :name => "fk_Contacts_Contact_types1_idx"
+  add_index "contacts", ["idGeneral_info"], :name => "fk_Contacts_General_info_idx"
 
-  create_table "periodos", :primary_key => "id_periodo", :force => true do |t|
-    t.string "periodo", :limit => 45, :null => false
+  create_table "machine_type", :primary_key => "idMachine_type", :force => true do |t|
+    t.string  "machine_type", :limit => 45
+    t.integer "idBrand",                    :null => false
   end
 
-  create_table "prerrequisitos", :id => false, :force => true do |t|
-    t.integer "id_prerrequisito",               :null => false
-    t.integer "id_materias",                    :null => false
-    t.string  "prerrequisito",    :limit => 45, :null => false
+  add_index "machine_type", ["idBrand"], :name => "fk_Machine_type_Brand1_idx"
+
+  create_table "machines", :primary_key => "idMachines", :force => true do |t|
+    t.integer "Model_idModel",               :null => false
+    t.string  "serial_number", :limit => 45
+    t.integer "idClients",                   :null => false
   end
 
-  add_index "prerrequisitos", ["id_materias"], :name => "fk_prerrequisitos_materias1"
+  add_index "machines", ["Model_idModel"], :name => "fk_Machines_Model1_idx"
+  add_index "machines", ["idClients"], :name => "fk_Machines_Clients1_idx"
+
+  create_table "model", :primary_key => "idModel", :force => true do |t|
+    t.integer "idMachine_brand", :null => false
+  end
+
+  add_index "model", ["idMachine_brand"], :name => "fk_Model_Machine_brand1_idx"
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -140,21 +113,25 @@ ActiveRecord::Schema.define(:version => 20130318055526) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
-  create_table "razones", :primary_key => "id_razon", :force => true do |t|
-    t.string "descripcion", :limit => 45, :null => false
+  create_table "service_logs", :primary_key => "idService_logs", :force => true do |t|
+    t.integer  "idServices",               :null => false
+    t.integer  "idEvents",                 :null => false
+    t.string   "Comments",   :limit => 45
+    t.datetime "date_"
   end
 
-  create_table "tiposcontactos", :primary_key => "id_tipocontacto", :force => true do |t|
-    t.string "tipocontacto", :limit => 45, :null => false
+  add_index "service_logs", ["idEvents"], :name => "fk_Service_logs_Events1_idx"
+  add_index "service_logs", ["idServices"], :name => "fk_Service_logs_Services1_idx"
+
+  create_table "services", :primary_key => "idServices", :force => true do |t|
+    t.integer "idMachines",  :null => false
+    t.integer "idPackages",  :null => false
+    t.integer "idEmployees", :null => false
   end
 
-  create_table "tiposestatus", :primary_key => "id_tiposestatus", :force => true do |t|
-    t.string "tipoestatus", :limit => 45, :null => false
-  end
-
-  create_table "tiposusuarios", :primary_key => "id_tipousuario", :force => true do |t|
-    t.string "tipousuario", :limit => 45, :null => false
-  end
+  add_index "services", ["idEmployees"], :name => "fk_Services_Employees1_idx"
+  add_index "services", ["idMachines"], :name => "fk_Services_Machines1_idx"
+  add_index "services", ["idPackages"], :name => "fk_Services_Packages1_idx"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -173,14 +150,5 @@ ActiveRecord::Schema.define(:version => 20130318055526) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "usuarios", :primary_key => "id_usuario", :force => true do |t|
-    t.integer "id_tipousuario",               :null => false
-    t.string  "nombre",         :limit => 45, :null => false
-    t.string  "contrasena",     :limit => 45, :null => false
-    t.integer "estatus",        :limit => 1,  :null => false
-  end
-
-  add_index "usuarios", ["id_tipousuario"], :name => "FK_usuario_tiposusuarios"
 
 end

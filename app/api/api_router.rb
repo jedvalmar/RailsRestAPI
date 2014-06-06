@@ -61,5 +61,5 @@ class ApiRouter < ApiBase
   end
 
   # Load routes from endpoints folder
-  load_routes :sessions, :users
+  load_routes :sessions, :users, :clients
 end
